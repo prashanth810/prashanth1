@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@100..700&family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Outfit;
+    scroll-behavior: smooth;
+}
+
+.logo {
+    font-family: 'Parisienne', cursive;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.fade-about {
+    animation: fadeabout 3s ease-in-out;
+}
+
+@keyframes fadeabout {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-services {
+    animation: fadeservice 5s ease-in-out;
+}
+
+@keyframes fadeservice {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-skills {
+    animation: fadeskill 6.8s ease-in-out;
+}
+
+@keyframes fadeskill {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-projects {
+    animation: fadeproject 7.8s ease-in-out;
+}
+
+@keyframes fadeproject {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-contacts {
+    animation: fadecontact 8.8s ease-in-out;
+}
+
+@keyframes fadecontact {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
