@@ -44,13 +44,13 @@ const Services = () => {
                 </div>
 
 
-                <div className="px-8 border border-[#0ef] hover:translate-y-[-8px] hover:bg-[#54b9c0] hover:text-gray-700  duration-500  cursor-pointer">
+                <div className="px-8 border border-[#0ef] hover:translate-y-[-8px] hover:bg-[#54b9c0] hover:text-gray-700  duration-500 cursor-pointer">
                     <div className="py-6">
                         <FontAwesomeIcon icon={faCode} className='text-[#63E6BE] text-6xl' />
                     </div>
                     <div className="pb-6">
-                        <h5 className="text-2xl mb-3 tracking-widest"> Frontend <br /> <span className='text-xl'> (web) </span> Designer</h5>
-                        <p className="tracking-wider">I'm a frontend designer...</p>
+                        <h5 className="text-2xl mb-3 tracking-widest"> React Native <br /> (App)  Developer</h5>
+                        <p className="tracking-wider">I'm a App developer...</p>
                         <div className='my-7'>
                             <button class="relative overflow-hidden md:px-10 px-5 py-3 hover:text-black duration-300 font-semibold border border-[#0ef] group">
                                 <span class="absolute inset-0 bg-gradient-to-r from-transparent via-[#0ef] to-[#0ef] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></span>

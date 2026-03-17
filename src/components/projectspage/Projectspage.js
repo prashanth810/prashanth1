@@ -8,12 +8,40 @@ import youtubeclone from '../../images/youtubeclone.png';
 import geminiai from '../../images/gemini ai.png';
 import cabpooling from '../../images/cabpooling.png';
 import pickles from '../../images/pickles.png';
+import photograph from '../../images/photograph.png';
+import rewards from '../../images/rewards.png';
+import zipto from '../../images/zipto.png';
+import ecommerce from '../../images/ecommerce.png';
+import ygeiai from '../../images/ygeiai.png';
+import chatapp from '../../images/chatapp.png';
+import livechat from '../../images/livechat.png';
+import islandportfolio from '../../images/islandportfolio.png';
+import spaceportfolio from '../../images/spaceportfolio.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare, faMobile, faGlobe, faServer } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const ALL_PROJECTS = [
     // ── MERN ──────────────────────────────────────────────
+    {
+        id: 17,
+        title: 'Wedding Photography Platform',
+        image: photograph, // replace with photography screenshot
+        tools: 'React JS, Node JS, Express JS, MongoDB, Cloudinary, Tailwind CSS',
+        link: 'https://dineshphotographer.vercel.app', // update link
+        category: 'mern',
+        isGithub: false,
+        badge: 'New',
+    },
+    {
+        id: 3,
+        title: 'Live Chat Application',
+        image: livechat,
+        tools: 'React JS, Node JS, Express JS, MongoDB, Tailwind CSS, WebSocket',
+        link: 'https://livechatfrontend.onrender.com/',
+        category: 'mern',
+        isGithub: false,
+    },
     {
         id: 1,
         title: "Grandmom's Pickles",
@@ -32,21 +60,12 @@ const ALL_PROJECTS = [
         category: 'mern',
         isGithub: false,
     },
-    {
-        id: 3,
-        title: 'Live Chat Application',
-        image: pickles,
-        tools: 'React JS, Node JS, Express JS, MongoDB, Tailwind CSS, WebSocket',
-        link: 'https://livechatfrontend.onrender.com/',
-        category: 'mern',
-        isGithub: false,
-    },
 
     // ── MOBILE ────────────────────────────────────────────
     {
         id: 4,
         title: 'E-Commerce Mobile App',
-        image: pickles,
+        image: ecommerce,
         tools: 'React Native (Expo), Redux Toolkit, Node JS, Express JS, MongoDB, Razorpay',
         link: 'https://github.com/prashanth810/delivery-app',
         category: 'mobile',
@@ -54,35 +73,55 @@ const ALL_PROJECTS = [
     },
     {
         id: 5,
+        title: 'Real-Time Chat App',
+        image: chatapp,
+        tools: 'React Native CLI, Reanimated, WebSocket, Node JS, Express JS, MongoDB',
+        link: 'https://github.com/prashanth810/livechatappfrontend',
+        category: 'mobile',
+        isGithub: true,
+        badge: 'New',
+    },
+    {
+        id: 6,
         title: 'Ygeiai Health App',
-        image: pickles,
+        image: ygeiai,
         tools: 'React Native CLI, Reanimated, Redux Toolkit, Node JS, Express JS, MongoDB',
         link: 'https://github.com/prashanth810/ygeiai',
         category: 'mobile',
         isGithub: true,
     },
     {
-        id: 6,
-        title: 'Real-Time Chat App',
-        image: pickles,
-        tools: 'React Native CLI, Reanimated, WebSocket, Node JS, Express JS, MongoDB',
-        link: 'https://github.com/prashanth810',
-        category: 'mobile',
-        isGithub: true,
-        badge: 'New',
-    },
-    {
         id: 14,
         title: 'Zipto Clone (Booking Products)',
-        image: pickles, // replace with your zipto image when ready
+        image: zipto, // replace with your zipto image when ready
         tools: 'React Native CLI, Redux Toolkit, Node JS, Express JS, MongoDB, Google Maps API',
-        link: 'https://github.com/prashanth810',
+        link: 'https://github.com/prashanth810/Zepto_clone',
         category: 'mobile',
         isGithub: true,
         badge: 'New',
     },
 
     // ── WEB DESIGN ────────────────────────────────────────
+    {
+        id: 15,
+        title: 'Spaceman 3D Portfolio',
+        image: spaceportfolio, // replace with spaceman screenshot
+        tools: 'React JS, Three.js, JavaScript, Tailwind CSS',
+        link: 'https://prahsnathspacex.vercel.app/', // update link
+        category: 'webdesign',
+        isGithub: false,
+        badge: 'New',
+    },
+    {
+        id: 16,
+        title: 'Island 3D Website',
+        image: islandportfolio, // replace with island screenshot
+        tools: 'React JS, Three.js, JavaScript, Tailwind CSS',
+        link: 'https://3portfolio-beige.vercel.app/', // update link
+        category: 'webdesign',
+        isGithub: false,
+        badge: 'New',
+    },
     {
         id: 7,
         title: 'Ice Cream Parlour',
@@ -115,18 +154,18 @@ const ALL_PROJECTS = [
         title: 'Dian Apps',
         image: dianapps,
         tools: 'React JS, JavaScript, Tailwind CSS',
-        link: 'https://dains-clone-task.vercel.app/',
+        link: 'https://github.com/prashanth810/dians-clone-website',
         category: 'webdesign',
-        isGithub: false,
+        isGithub: true,
     },
     {
         id: 11,
         title: 'Schools',
         image: schools,
         tools: 'React JS, JavaScript, Tailwind CSS',
-        link: 'https://schools-theta.vercel.app/',
+        link: 'https://github.com/prashanth810/Schools',
         category: 'webdesign',
-        isGithub: false,
+        isGithub: true,
     },
     {
         id: 12,
@@ -147,41 +186,11 @@ const ALL_PROJECTS = [
         isGithub: false,
     },
     {
-        id: 15,
-        title: 'Spaceman 3D Portfolio',
-        image: pickles, // replace with spaceman screenshot
-        tools: 'React JS, Three.js, JavaScript, Tailwind CSS',
-        link: 'https://github.com/prashanth810', // update link
-        category: 'webdesign',
-        isGithub: false,
-        badge: 'New',
-    },
-    {
-        id: 16,
-        title: 'Island 3D Website',
-        image: pickles, // replace with island screenshot
-        tools: 'React JS, Three.js, JavaScript, Tailwind CSS',
-        link: 'https://github.com/prashanth810', // update link
-        category: 'webdesign',
-        isGithub: false,
-        badge: 'New',
-    },
-    {
-        id: 17,
-        title: 'Wedding Photography Platform',
-        image: pickles, // replace with photography screenshot
-        tools: 'React JS, Node JS, Express JS, MongoDB, Cloudinary, Tailwind CSS',
-        link: 'https://dineshphotographer.vercel.app', // update link
-        category: 'mern',
-        isGithub: false,
-        badge: 'New',
-    },
-    {
         id: 18,
         title: 'Rewards Web App',
-        image: pickles, // replace with rewards screenshot
+        image: rewards, // replace with rewards screenshot
         tools: 'React JS, Node JS, Express JS, MongoDB, Tailwind CSS',
-        link: 'https://github.com/prashanth810', // update link
+        link: 'https://rewards-sigma-ten.vercel.app/rewards', // update link
         category: 'mern',
         isGithub: false,
         badge: 'New',
@@ -191,8 +200,8 @@ const ALL_PROJECTS = [
 
 const TABS = [
     { key: 'all', label: 'All', icon: faGlobe },
-    { key: 'mern', label: 'MERN Stack', icon: faServer },
-    { key: 'mobile', label: 'React Native', icon: faMobile },
+    { key: 'mern', label: 'MERN Stack (Web)', icon: faServer },
+    { key: 'mobile', label: 'React Native (App)', icon: faMobile },
     { key: 'webdesign', label: 'Web Design', icon: faGlobe },
 ];
 

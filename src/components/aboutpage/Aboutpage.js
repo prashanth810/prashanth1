@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import heroimg from '../../images/myimage2.jpg';
-import prashanth from '../../images/Prashanthup.pdf';
+import heroimg from '../../images/photo.png';
+import prashanth from '../../images/Prashanth.pdf';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -14,7 +14,7 @@ const Aboutpage = () => {
             <div className='grid md:grid-cols-2 grid-cols-1 items-center justify-center md:w-[80%] md:mx-auto'>
 
                 <div className='flex items-center'>
-                    <img src={heroimg} className='md:w-[40%] w-[70%] md:mx-0 mx-auto rounded-full' />
+                    <img src={heroimg} className='md:w-[60%] w-[70%] md:mx-0 mx-auto rounded shadow-sm drop-shadow' />
                 </div>
 
                 <div>
@@ -23,9 +23,9 @@ const Aboutpage = () => {
                         <h1 className="text-3xl pt-4"> I'm a Web Developer <span className='text-lg text-[#0ef]'> (React js) </span> </h1>
                     </div>
                     <div>
-                        <p className='leading-[30px] text-justify'> I have 1-year-experienced Frontend Developer. I have developed many projects, such as an admin panel and an ecommerce website, with React.js and JavaScript for the frontend to design modern, user-friendly UI components.
+                        <p className='leading-[30px] text-justify'>
+                            I am a Frontend Developer with 2 years of experience specializing in React.js, JavaScript, and React Native to build modern e-commerce sites and mobile applications. I also have hands-on experience with the MERN stack (Node.js, Express, and MongoDB) to develop full-stack features like authentication and payment integration. My focus is on creating seamless, user-friendly interfaces across both web and mobile platforms.
                         </p>
-                        <p className='my-2 leading-[30px]'> Basic knowledge about <span> Node.js, Express, and MongoDB </span> have been used to create APIs for functionalities like registration, login, product management, user management, add-to-cart, payment gateways, and order processing... </p>
                     </div>
                     <div className='flex items-center gap-x-5 mt-8'>
                         <div>
@@ -58,7 +58,7 @@ const Aboutpage = () => {
                             </a>
                         </div>
                     </div>
-                    <div className='flex items-center my-5 gap-x-4'>
+                    {/* <div className='flex items-center my-5 gap-x-4'>
                         <button class="relative overflow-hidden md:px-5 px-4 py-3 font-semibold border hover:text-black duration-300 border-[#0ef] rounded-full group">
                             <span class="absolute inset-0 bg-gradient-to-r from-transparent via-[#0ef] to-[#0ef] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></span>
                             <span class="relative z-[10px]">More About Me</span>
@@ -74,7 +74,7 @@ const Aboutpage = () => {
                                 <span class="relative z-[10px]">Download CV</span>
                             </a>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

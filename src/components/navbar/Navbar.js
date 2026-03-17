@@ -52,7 +52,7 @@ const Navbar = () => {
                         : 'bg-transparent py-5'
                     }`}
             >
-                <nav className="max-w-[1100px] mx-auto px-5 flex items-center justify-between">
+                <nav className="max-w-[85%] mx-auto px-5 flex items-center justify-between">
 
                     {/* Logo */}
                     <div

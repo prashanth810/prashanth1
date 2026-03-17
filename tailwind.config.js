@@ -13,6 +13,9 @@ module.exports = {
     extend: {
       colors: {
         primary: "#ccc"
+      },
+      dropShadow: {
+        yellow: '1px 1px 20px yellow',
       }
     },
   },
