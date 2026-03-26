@@ -290,7 +290,7 @@ const Projectspage = () => {
         : ALL_PROJECTS.filter((p) => p.category === activeTab);
 
     return (
-        <section id="projects" className="bg-[#0a0a0a] px-4 sm:px-6 py-14 lg:py-20">
+        <section id="projects" className="px-4 sm:px-6 py-10 lg:py-16">
 
             {/* Heading */}
             <div className="text-center mb-10">

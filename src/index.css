@@ -16,6 +16,10 @@
     font-family: 'Parisienne', cursive;
 }
 
+.textstyle {
+    font-family: cursive;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

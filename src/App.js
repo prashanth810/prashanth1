@@ -1,35 +1,31 @@
-import React from 'react'
-import Homepage from './components/Homepage/Homepage'
+import React, { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import PrivacyPolicy from './components/privacypolicy/PrivacyPolicy'
-import Antigravity from './components/antigravity/Antigravity'
+
+const Homepage = lazy(() => import('./components/Homepage/Homepage'))
+const PrivacyPolicy = lazy(() => import('./components/privacypolicy/PrivacyPolicy'))
+
+const Loader = () => (
+  <div className='flex items-center justify-center min-h-screen bg-black'>
+    <div style={{
+      width: 40, height: 40,
+      border: '3px solid #1a1a1a',
+      borderTop: '3px solid #0ef',
+      borderRadius: '50%',
+      animation: 'spin 0.8s linear infinite',
+    }} />
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+)
 
 const App = () => {
   return (
     <div className='bg-black text-white'>
-      <div style={{ width: '100%', position: 'relative' }}>
-        <Antigravity
-          count={300}
-          magnetRadius={6}
-          ringRadius={7}
-          waveSpeed={0.4}
-          waveAmplitude={1}
-          particleSize={1.5}
-          lerpSpeed={0.05}
-          color="#5227FF"
-          autoAnimate
-          particleVariance={1}
-          rotationSpeed={0}
-          depthFactor={1}
-          pulseSpeed={3}
-          particleShape="capsule"
-          fieldStrength={10}
-        />
-      </div>
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/privacy' element={<PrivacyPolicy />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/privacy' element={<PrivacyPolicy />} />
+        </Routes>
+      </Suspense>
     </div>
   )
 }

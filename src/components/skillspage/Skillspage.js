@@ -79,7 +79,7 @@ const Skillspage = () => {
     return (
         <section
             id="skills"
-            className="bg-[#0f0f0f] px-5 py-14 lg:py-20"
+            className="px-5 py-10 lg:py-14"
         >
             {/* Heading */}
             <div className="text-center mb-12">
