@@ -1,5 +1,10 @@
 import React from 'react';
 import Navbar from '../navbar/Navbar';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SECTIONS = [
     {
@@ -27,50 +32,84 @@ I do not use your data for marketing, advertising, or any commercial purposes.`,
     },
     {
         title: '4. Data Storage',
-        content: `Messages submitted through the contact form are received via email (nodemailer) and may be stored in my personal email inbox. I do not store your data in any external database beyond what is necessary to respond to your inquiry.`,
+        content: `Messages submitted through the contact form are received via email (nodemailer) and may be stored in my personal email inbox.`,
     },
     {
         title: '5. Cookies',
-        content: `This portfolio website does not use tracking cookies or any third-party analytics tools that collect personal data. Basic session data may be used for authentication purposes where applicable.`,
+        content: `This portfolio website does not use tracking cookies or any third-party analytics tools.`,
     },
     {
         title: '6. Third-Party Services',
-        content: `This website may use the following third-party services:
-- Vercel — for website hosting
-- Render — for backend hosting
-- MongoDB Atlas — for database (if applicable)
-- Cloudinary — for image storage (if applicable)
-
-Each of these services has their own privacy policies. I encourage you to review them.`,
+        content: `This website may use services like Vercel, Render, MongoDB Atlas, Cloudinary.`,
     },
     {
         title: '7. Your Rights',
-        content: `You have the right to:
-- Request access to any personal data you've shared with me
-- Request deletion of your data
-- Withdraw consent at any time
-
-To exercise any of these rights, contact me directly at prashanthuppari1999@gmail.com.`,
+        content: `You can request access, deletion, or withdrawal of your data anytime.`,
     },
     {
         title: "8. Children's Privacy",
-        content: `This portfolio is not directed at children under the age of 13. I do not knowingly collect personal information from children.`,
+        content: `This portfolio is not directed at children under the age of 13.`,
     },
     {
         title: '9. Changes to This Policy',
-        content: `I may update this Privacy Policy occasionally. Any changes will be reflected on this page with an updated date. Continued use of this website after changes means you accept the updated policy.`,
+        content: `I may update this Privacy Policy occasionally.`,
     },
     {
         title: '10. Contact',
-        content: `If you have any questions about this Privacy Policy, feel free to reach out:
-
-📧  prashanthuppari1999@gmail.com
-📞  +91 8106124493
-📍  Hyderabad, Telangana, India`,
+        content: `📧 prashanthuppari1999@gmail.com
+📞 +91 8106124493`,
     },
 ];
 
 const Privacypolicy = () => {
+
+    useGSAP(() => {
+
+        // Header
+        gsap.from("#policy-header", {
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+
+        // Intro
+        gsap.from("#policy-intro", {
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "power2.out"
+        });
+
+        // Reveal cards one by one on scroll
+        gsap.utils.toArray(".policy-card").forEach((card) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play reverse play reverse"
+                },
+                opacity: 0,
+                y: 60,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        // Footer
+        gsap.from("#policy-footer", {
+            scrollTrigger: {
+                trigger: "#policy-footer",
+                start: "top 90%"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.6
+        });
+
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -78,7 +117,7 @@ const Privacypolicy = () => {
                 <div className="max-w-[760px] mx-auto">
 
                     {/* Header */}
-                    <div className="mb-12 border-b border-[#1f1f1f] pb-8">
+                    <div id="policy-header" className="mb-12 border-b border-[#1f1f1f] pb-8">
                         <p className="text-[#0ef] text-[11px] font-semibold tracking-[3px] uppercase mb-3">
                             Legal
                         </p>
@@ -90,7 +129,7 @@ const Privacypolicy = () => {
                         </p>
 
                         {/* Intro box */}
-                        <div className="mt-6 px-5 py-4 bg-[#0f0f0f] border border-[#1e1e1e] rounded-xl">
+                        <div id="policy-intro" className="mt-6 px-5 py-4 bg-[#0f0f0f] border border-[#1e1e1e] rounded-xl">
                             <p className="text-[#aaa] text-sm leading-7">
                                 This Privacy Policy explains how{' '}
                                 <span className="text-white font-semibold">Prashanth Uppari</span>{' '}
@@ -104,7 +143,7 @@ const Privacypolicy = () => {
                         {SECTIONS.map((section, i) => (
                             <div
                                 key={i}
-                                className="bg-[#0d0d0d] border border-[#2a2a2a] rounded-2xl p-6"
+                                className="policy-card bg-[#0d0d0d] border border-[#2a2a2a] rounded-2xl p-6"
                             >
                                 <h2 className="text-white text-sm font-semibold mb-3">
                                     {section.title}
@@ -117,7 +156,7 @@ const Privacypolicy = () => {
                     </div>
 
                     {/* Footer */}
-                    <div className="mt-12 pt-6 border-t border-[#1a1a1a] text-center">
+                    <div id="policy-footer" className="mt-12 pt-6 border-t border-[#1a1a1a] text-center">
                         <p className="text-[#555] text-xs">
                             © 2025 Prashanth Uppari. All Rights Reserved.
                         </p>

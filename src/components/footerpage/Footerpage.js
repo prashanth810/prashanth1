@@ -3,6 +3,11 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faPhoneVolume, faLocationDot, faCircleCheck, faSpinner, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Footerpage = () => {
     const [formdata, setFormdata] = useState({
@@ -11,6 +16,65 @@ const Footerpage = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null); // 'success' | 'error' | null
+
+    useGSAP(() => {
+        const t1 = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 75%",
+                toggleActions: "play none none none",
+            }
+        });
+
+
+        const t2 = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 25%",
+                toggleActions: "play none none none",
+            }
+        });
+
+        t1.fromTo(".contactme-head", {
+            opacity: 0,
+            yPercent: 30,
+        }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1,
+            ease: "power1.inOut",
+        })
+
+        t1.fromTo(".sub-head", {
+            opacity: 0,
+            yPercent: 30,
+        }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1,
+            ease: "power2.inOut",
+        })
+
+        t2.fromTo(".letswork", {
+            opacity: 0,
+            yPercent: 20,
+        }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1,
+            ease: "power1.inOut",
+        })
+
+        t2.fromTo(".contactform", {
+            opacity: 0,
+            yPercent: 20,
+        }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1,
+            ease: "power1.inOut",
+        })
+    }, []);
 
     const handlechange = (e) => {
         const { name, value } = e.target;
@@ -44,16 +108,16 @@ const Footerpage = () => {
 
             {/* Heading */}
             <div className="text-center mb-14">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3 contactme-head">
                     Contact <span className="text-[#0ef]">Me</span>
                 </h2>
-                <p className="text-[#555] text-sm">Let's work together — drop me a message!</p>
+                <p className="text-[#555] text-sm sub-head">Let's work together — drop me a message!</p>
             </div>
 
             <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
 
                 {/* ── LEFT INFO ── */}
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8 letswork">
                     <div>
                         <h3 className="text-white text-xl font-semibold mb-3">Let's Work Together</h3>
                         <p className="text-[#666] text-sm leading-relaxed">
@@ -100,7 +164,7 @@ const Footerpage = () => {
                 </div>
 
                 {/* ── RIGHT FORM ── */}
-                <div className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-6 sm:p-8">
+                <div className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-6 sm:p-8 ">
 
                     {/* Success / Error Banner */}
                     {status === 'success' && (
@@ -123,7 +187,7 @@ const Footerpage = () => {
                     <form onSubmit={handlesubmit} className="flex flex-col gap-5">
 
                         {/* Name + Mobile */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 contactform">
                             <div className="flex flex-col gap-1.5">
                                 <label className="text-[#666] text-xs font-medium">Full Name</label>
                                 <input
@@ -158,7 +222,7 @@ const Footerpage = () => {
                         </div>
 
                         {/* Email */}
-                        <div className="flex flex-col gap-1.5">
+                        <div className="flex flex-col gap-1.5 contactform">
                             <label className="text-[#666] text-xs font-medium">Email</label>
                             <input
                                 type="email"
@@ -174,7 +238,7 @@ const Footerpage = () => {
                         </div>
 
                         {/* Message */}
-                        <div className="flex flex-col gap-1.5">
+                        <div className="flex flex-col gap-1.5 contactform">
                             <label className="text-[#666] text-xs font-medium">Message</label>
                             <textarea
                                 rows={4}
@@ -189,29 +253,31 @@ const Footerpage = () => {
                             />
                         </div>
 
-                        {/* Submit Button */}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className={`w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2
+                        <div className='contactform'>
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className={`w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2
                                         transition-all duration-200
                                 ${loading
-                                    ? 'bg-[#0ef]/30 text-black/60 cursor-not-allowed'
-                                    : 'bg-[#0ef] text-black hover:bg-[#0ef]/80 hover:shadow-[0_0_20px_rgba(0,238,255,0.2)] cursor-pointer'
-                                }`}
-                        >
-                            {loading ? (
-                                <>
-                                    <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
-                                    Sending...
-                                </>
-                            ) : (
-                                <>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
-                                    Send Message
-                                </>
-                            )}
-                        </button>
+                                        ? 'bg-[#0ef]/30 text-black/60 cursor-not-allowed'
+                                        : 'bg-[#0ef] text-black hover:bg-[#0ef]/80 hover:shadow-[0_0_20px_rgba(0,238,255,0.2)] cursor-pointer'
+                                    }`}
+                            >
+                                {loading ? (
+                                    <>
+                                        <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                        Send Message
+                                    </>
+                                )}
+                            </button>
+                        </div>
 
                     </form>
                 </div>
@@ -219,14 +285,12 @@ const Footerpage = () => {
 
             {/* ── FOOTER BAR ── */}
             <div className="max-w-5xl mx-auto mt-14 pt-6 border-t border-[#1a1a1a]
-                flex flex-col sm:flex-row items-center justify-between gap-3">
+                flex flex-col sm:flex-row items-center justify-between gap-3 contactform">
                 <p className="text-[#666] text-xs">© 2026 Prashanth. All Rights Reserved.</p>
-                <p
-                    onClick={() => navigate('/privacy')}
-                    className="text-[#666] text-xs cursor-pointer hover:text-[#0ef] transition-colors duration-200"
-                >
+                <button onClick={() => { navigate('/privacy'); window.scrollTo(0, 0) }}
+                    className="text-[#666] text-xs cursor-pointer hover:text-[#0ef] transition-colors duration-200" >
                     Privacy Policy
-                </p>
+                </button>
             </div>
 
         </section>

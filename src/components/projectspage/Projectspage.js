@@ -20,6 +20,11 @@ import spaceportfolio from '../../images/spaceportfolio.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare, faMobile, faGlobe, faServer } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const ALL_PROJECTS = [
     // ── MERN ──────────────────────────────────────────────
@@ -289,15 +294,53 @@ const Projectspage = () => {
         ? ALL_PROJECTS
         : ALL_PROJECTS.filter((p) => p.category === activeTab);
 
+
+    useGSAP(() => {
+        // ✅ Safety: ensure buttons are visible even if ScrollTrigger fails
+        gsap.set(".filter-btn", { opacity: 1, x: 0 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#projects",
+                start: "top 80%",
+                toggleActions: "play none none none",
+                onEnter: () => {
+                    gsap.from(".filter-btn", {
+                        opacity: 0,
+                        x: 100,
+                        duration: 0.5,
+                        stagger: 0.15,
+                        ease: "power2.out",
+                    });
+                }
+            }
+        });
+
+        tl.from("#projects-head", {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+
+        tl.from("#projects-sub", {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: "power2.out"
+        }, "-=0.3");
+
+    }, []);
+
     return (
         <section id="projects" className="px-4 sm:px-6 py-10 lg:py-16">
 
             {/* Heading */}
-            <div className="text-center mb-10">
-                <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">
+            <div className="text-center mb-10 project">
+                <h1 id="projects-head" className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3">
                     Projects
                 </h1>
-                <p className="text-[#444] text-sm">A collection of things I've built</p>
+                <p id="projects-sub" className="text-[#444] text-sm">A collection of things I've built</p>
             </div>
 
             {/* Filter Tabs */}
@@ -311,9 +354,9 @@ const Projectspage = () => {
                         <button
                             key={tab.key}
                             onClick={() => setActiveTab(tab.key)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm
-                                        font-medium border transition-all duration-200 cursor-pointer
-                                ${activeTab === tab.key
+                            className={`filter-btn flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm
+                            font-medium border transition-all duration-200 cursor-pointer
+                    ${activeTab === tab.key
                                     ? 'bg-[#0ef] text-black border-[#0ef] shadow-[0_0_16px_rgba(0,238,255,0.25)]'
                                     : 'bg-transparent text-[#666] border-[#252525] hover:border-[#0ef]/50 hover:text-[#0ef]'
                                 }`}
@@ -321,14 +364,13 @@ const Projectspage = () => {
                             <FontAwesomeIcon icon={tab.icon} className="text-[11px]" />
                             {tab.label}
                             <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold min-w-[18px] text-center
-                                ${activeTab === tab.key ? 'bg-black/20 text-black' : 'bg-[#1a1a1a] text-[#444]'}`}>
+                    ${activeTab === tab.key ? 'bg-black/20 text-black' : 'bg-[#1a1a1a] text-[#444]'}`}>
                                 {count}
                             </span>
                         </button>
                     );
                 })}
             </div>
-
             {/* Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
                             gap-4 max-w-[1200px] mx-auto">

@@ -4,6 +4,11 @@ import {
     faHtml5, faCss3Alt, faJs, faReact, faNode, faBootstrap
 } from '@fortawesome/free-brands-svg-icons';
 import { faDatabase, faShippingFast, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const SKILLS = [
     { label: 'React JS', icon: faReact, color: '#61DAFB', target: 80 },
@@ -22,6 +27,7 @@ const SkillBar = ({ label, icon, color, target }) => {
     const [value, setValue] = useState(0);
     const ref = useRef(null);
     const started = useRef(false);
+    const intervalRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -29,27 +35,29 @@ const SkillBar = ({ label, icon, color, target }) => {
                 if (entry.isIntersecting && !started.current) {
                     started.current = true;
                     let current = 0;
-                    const interval = setInterval(() => {
+                    intervalRef.current = setInterval(() => {
                         current += 1;
                         setValue(current);
-                        if (current >= target) clearInterval(interval);
+                        if (current >= target) clearInterval(intervalRef.current);
                     }, 12);
                 }
             },
             { threshold: 0.3 }
         );
         if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
     }, [target]);
 
     return (
         <div
             ref={ref}
-            className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 
-                       hover:border-[#444] hover:-translate-y-0.5 
-                       transition-all duration-200"
+            className="skill-card bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 
+                       hover:border-[#444] hover:-translate-y-1 
+                       transition-all duration-300"
         >
-            {/* Icon + Label + Percent */}
             <div className="flex items-center gap-2 mb-3">
                 <FontAwesomeIcon icon={icon} style={{ color, fontSize: '18px' }} />
                 <span className="flex-1 text-[#e0e0e0] text-sm font-medium">
@@ -60,7 +68,6 @@ const SkillBar = ({ label, icon, color, target }) => {
                 </span>
             </div>
 
-            {/* Track (gray) + Fill (colored) */}
             <div className="w-full h-2 bg-[#2e2e2e] rounded-full overflow-hidden">
                 <div
                     className="h-full rounded-full"
@@ -76,25 +83,43 @@ const SkillBar = ({ label, icon, color, target }) => {
 };
 
 const Skillspage = () => {
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top 75%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        tl.from("#skills-head", {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+
+        tl.from("#skills-sub", {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: "power2.out"
+        }, "-=0.3");
+
+    }, []);
+
     return (
-        <section
-            id="skills"
-            className="px-5 py-10 lg:py-14"
-        >
-            {/* Heading */}
-            <div className="text-center mb-12">
+        <section id="skills" className="px-5 py-10 lg:py-14">
+            <div className="text-center mb-12" id="skills-head">
                 <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-2">
                     Skills
                 </h1>
-                <p className="text-[#888] text-base">Technologies I work with</p>
+                <p className="text-[#888] text-base" id="skills-sub">
+                    Technologies I work with
+                </p>
             </div>
 
-            {/* Responsive Grid
-                mobile  : 1 col
-                sm(640) : 2 cols
-                lg(1024): 3 cols
-                xl(1280): 4 cols
-            */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 
                             gap-4 md:gap-5 max-w-[1200px] mx-auto">
                 {SKILLS.map((skill) => (
